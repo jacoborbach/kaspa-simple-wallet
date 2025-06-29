@@ -1,0 +1,44 @@
+{
+    "name": "kaspa-simple-wallet",
+    "version": "1.0.0",
+    "description": "Simple, reliable Kaspa wallet generation and HD address derivation for browsers and Node.js. No complex setup required.",
+    "main": "kaspa-wallet.js",
+    "author": "Jacob Orbach <jacoborbach96@gmail.com>",
+    "license": "MIT",
+    "keywords": [
+        "kaspa",
+        "wallet",
+        "cryptocurrency",
+        "blockchain",
+        "payments",
+        "ecommerce",
+        "HD-wallet",
+        "address-generation",
+        "bitcoin-alternative",
+        "crypto-payments"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jacoborbach/kaspa-simple-wallet.git"
+    },
+    "homepage": "https://github.com/jacoborbach/kaspa-simple-wallet#readme",
+    "bugs": {
+        "url": "https://github.com/jacoborbach/kaspa-simple-wallet/issues"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "engines": {
+        "node": ">=12.0.0"
+    },
+    "files": [
+        "kaspa-wallet.js",
+        "README.md",
+        "LICENSE"
+    ],
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}
