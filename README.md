@@ -60,12 +60,14 @@ npm run build-debug  # Development build (includes sensitive APIs for testing)
 
 ### Publish to npm
 
-This package ships both the browser bundle and full source:
+This package ships both the browser bundle and an ESM bundle:
 
 - `build/kaspa-wallet.js` (IIFE for direct `<script>` use)
-- `src/` (ESM source for bundlers)
+- `build/kaspa-wallet.esm.js` (ESM for modern bundlers)
 
-The npm manifest includes only: `build/kaspa-wallet.js`, `src/`, `LICENSE`, `README.md`.
+The npm manifest includes only: `build/kaspa-wallet.js`, `build/kaspa-wallet.esm.js`, `LICENSE`, `README.md`.
+
+**Source code:** Full source code is available on [GitHub](https://github.com/jacoborbach/kaspa-simple-wallet) for review and auditing. The npm package contains pre-bundled code to ensure clean installations without dependency conflicts.
 
 ```bash
 npm version patch   # or minor/major

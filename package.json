@@ -3,11 +3,10 @@
     "version": "1.0.2",
     "description": "Watch-only Kaspa address derivation from KPUB/XPUB (Kaspium compatible)",
     "main": "build/kaspa-wallet.js",
-    "module": "src/index.js",
     "exports": {
         ".": {
             "browser": "./build/kaspa-wallet.js",
-            "import": "./src/index.js"
+            "import": "./build/kaspa-wallet.esm.js"
         }
     },
     "author": "Jacob Orbach <jacoborbach96@gmail.com>",
@@ -33,20 +32,20 @@
         "url": "https://github.com/jacoborbach/kaspa-simple-wallet/issues"
     },
     "scripts": {
-        "build": "esbuild src/index.js --bundle --minify --outfile=./build/kaspa-wallet.js --platform=browser --format=iife --global-name=KaspaWallet --define:global=globalThis --define:KASPA_EXPOSE_SENSITIVE=false --define:KASPA_DEBUG=false --inject:shims.js --alias:stream=stream-browserify --alias:events=events",
+        "build": "npm run build:esm && esbuild src/index.js --bundle --minify --outfile=./build/kaspa-wallet.js --platform=browser --format=iife --global-name=KaspaWallet --define:global=globalThis --define:KASPA_EXPOSE_SENSITIVE=false --define:KASPA_DEBUG=false --inject:shims.js --alias:stream=stream-browserify --alias:events=events",
+        "build:esm": "esbuild src/index.js --bundle --minify --outfile=./build/kaspa-wallet.esm.js --platform=browser --format=esm --define:global=globalThis --define:KASPA_EXPOSE_SENSITIVE=false --define:KASPA_DEBUG=false --inject:shims.js --alias:stream=stream-browserify --alias:events=events",
         "build-debug": "esbuild src/index.js --bundle --outfile=./build/kaspa-wallet.debug.js --platform=browser --format=iife --global-name=KaspaWallet --define:global=globalThis --define:KASPA_EXPOSE_SENSITIVE=true --define:KASPA_DEBUG=true --sourcemap --inject:shims.js --alias:stream=stream-browserify"
     },
-    "dependencies": {
+    "dependencies": {},
+    "devDependencies": {
         "bip39": "^3.1.0",
         "@scure/bip32": "^2.0.1",
         "@scure/base": "^2.0.0",
         "@noble/hashes": "^2.0.1",
         "@okxweb3/coin-kaspa": "^2.4.0",
         "buffer": "^6.0.3",
-        "process": "^0.11.10"
-    },
-    "devDependencies": {
-        "esbuild": "^0.25.11",
+        "process": "^0.11.10",
+        "esbuild": "^0.24.2",
         "stream-browserify": "^3.0.0",
         "events": "^3.3.0"
     },
@@ -55,7 +54,7 @@
     },
     "files": [
         "build/kaspa-wallet.js",
-        "src",
+        "build/kaspa-wallet.esm.js",
         "README.md",
         "LICENSE"
     ],

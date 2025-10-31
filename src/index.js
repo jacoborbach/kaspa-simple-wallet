@@ -14,7 +14,7 @@ if (typeof window !== 'undefined') {
 import * as bip39 from 'bip39';
 import { HDKey } from '@scure/bip32';
 import { base58check } from '@scure/base';
-import { sha256 } from '@noble/hashes/sha256';
+import { sha256 } from '@noble/hashes/sha2.js';
 import { KaspaWallet } from '@okxweb3/coin-kaspa';
 
 // Kaspa derivation paths for different wallets
