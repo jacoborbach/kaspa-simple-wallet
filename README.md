@@ -19,9 +19,15 @@ A production-safe JavaScript SDK for generating Kaspa addresses from extended pu
 
 ## 🚀 Use Cases
 
-### WordPress Plugins
-**Safe to ship** - Production build exposes only public-key operations.
+### Frontend JS Projects
+**Safe for any frontend project** - The production build is safe for public use.
 
+- ✅ No network calls
+- ✅ All processing in browser
+- ✅ Watch-only (public keys only)
+- ✅ No telemetry or tracking
+
+**Example:**
 ```javascript
 // User provides their KPUB (public key - safe to share)
 const kpub = "kpub2HhT43oHcjLUWbVdiqfspNUHKD4n2qaUTvVZ23FDtWAYp3JcB7ahsWMKTMqocvhmift3debvEnhWwA2TgY4icXdQCPRCW38b3gxUUbTT6DB";
@@ -33,21 +39,13 @@ console.log(result.addresses); // Array of kaspa: addresses
 
 **Important:** Always instruct users to use their **extended public key (KPUB/XPUB)** - NEVER their mnemonic/seed phrase.
 
-### Frontend JS Projects
-**Recommended** - The production build is safe for any frontend project.
-
-- ✅ No network calls
-- ✅ All processing in browser
-- ✅ Watch-only (public keys only)
-- ✅ No telemetry or tracking
-
 ### Best Practices
 
 1. **Only use public extended keys** - KPUB, XPUB, or TPUB formats
 2. **Never ask for mnemonics** - This SDK doesn't need them in production
-3. **Namespace in WordPress** - Consider custom namespacing to avoid conflicts:
+3. **Avoid global namespace conflicts** - If loading via `<script>`, consider custom namespacing:
    ```javascript
-   window.myPluginKaspa = kaspaWallet; // Instead of direct access
+   window.myAppKaspa = kaspaWallet; // Create your own namespace
    ```
 
 ## 📦 Install / Publish
