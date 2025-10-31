@@ -1,8 +1,15 @@
 {
     "name": "kaspa-simple-wallet",
-    "version": "1.0.0",
-    "description": "Simple, reliable Kaspa wallet generation and HD address derivation for browsers and Node.js. No complex setup required.",
-    "main": "kaspa-wallet.js",
+    "version": "1.0.1",
+    "description": "Watch-only Kaspa address derivation from KPUB/XPUB (Kaspium compatible)",
+    "main": "build/kaspa-wallet.js",
+    "module": "src/index.js",
+    "exports": {
+        ".": {
+            "browser": "./build/kaspa-wallet.js",
+            "import": "./src/index.js"
+        }
+    },
     "author": "Jacob Orbach <jacoborbach96@gmail.com>",
     "license": "MIT",
     "keywords": [
@@ -26,16 +33,19 @@
         "url": "https://github.com/jacoborbach/kaspa-simple-wallet/issues"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "esbuild src/index.js --bundle --minify --outfile=./build/kaspa-wallet.js --platform=browser --format=iife --global-name=KaspaWallet --define:global=globalThis --define:KASPA_EXPOSE_SENSITIVE=false --define:KASPA_DEBUG=false --inject:shims.js --alias:stream=stream-browserify --alias:events=events",
+        "build-debug": "esbuild src/index.js --bundle --outfile=./build/kaspa-wallet.debug.js --platform=browser --format=iife --global-name=KaspaWallet --define:global=globalThis --define:KASPA_EXPOSE_SENSITIVE=true --define:KASPA_DEBUG=true --sourcemap --inject:shims.js --alias:stream=stream-browserify"
     },
     "engines": {
         "node": ">=12.0.0"
     },
     "files": [
-        "kaspa-wallet.js",
+        "build/kaspa-wallet.js",
+        "src",
         "README.md",
         "LICENSE"
     ],
+    "sideEffects": false,
     "browserslist": [
         "> 1%",
         "last 2 versions",
