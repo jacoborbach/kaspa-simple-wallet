@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kaspa Wallet Test</title>
+</head>
+
+<body>
+    <h1>Kaspa Wallet Bundle Test</h1>
+    <div id="results"></div>
+
+    <script src="./build/kaspa-wallet.js"></script>
+    <script>
+        const resultsDiv = document.getElementById('results');
+
+        // Test KPUB (example - replace with real one)
+        const kpub = "kpub2HhT43oHcjLUWbVdiqfspNUHKD4n2qaUTvVZ23FDtWAYp3JcB7ahsWMKTMqocvhmift3debvEnhWwA2TgY4icXdQCPRCW38b3gxUUbTT6DB";
+
+        async function runTests() {
+            resultsDiv.innerHTML = '<p>Running tests...</p>';
+            const results = [];
+
+            try {
+                // Test 1: Check if kaspaWallet is available
+                const kaspaWallet = window.kaspaWallet || (typeof KaspaWallet !== 'undefined' ? KaspaWallet : null);
+                if (!kaspaWallet) {
+                    throw new Error('kaspaWallet not found in global scope. Check console for KaspaWallet or window.kaspaWallet');
+                }
+                results.push('✅ kaspaWallet loaded successfully');
+
+                // Test 2: Detect wallet format
+                const format = kaspaWallet.detectKPUBFormat(kpub);
+                results.push(`✅ Format detected: ${format}`);
+
+                // Test 3: Detect wallet type
+                const walletInfo = kaspaWallet.detectWalletType(kpub);
+                results.push(`✅ Wallet type: ${JSON.stringify(walletInfo, null, 2)}`);
+
+                // Test 4: Generate addresses (10 addresses)
+                console.log('Generating 10 addresses...');
+                const addressResult = await kaspaWallet.generateAddressesUniversal(kpub, 0, 10);
+                results.push(`✅ Generated ${addressResult.addresses.length} addresses:`);
+
+                addressResult.addresses.forEach(addr => {
+                    results.push(`   ${addr.index}: ${addr.address} (${addr.path})`);
+                });
+
+                // Test 5: Convert KPUB to XPUB (if Kaspium)
+                if (format === 'kaspium') {
+                    const xpub = kaspaWallet.convertKaspiumKPUB(kpub);
+                    results.push(`✅ Converted KPUB to XPUB: ${xpub.substring(0, 50)}...`);
+                }
+
+                resultsDiv.innerHTML = '<pre>' + results.join('\n') + '</pre>';
+                console.log('All tests passed!', results);
+
+            } catch (error) {
+                resultsDiv.innerHTML = `<p style="color: red;">❌ Error: ${error.message}</p><pre>${error.stack}</pre>`;
+                console.error('Test failed:', error);
+            }
+        }
+
+        // Run tests when page loads
+        runTests();
+    </script>
+</body>
+
+</html>

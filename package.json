@@ -9,7 +9,7 @@
             "import": "./build/kaspa-wallet.esm.js"
         }
     },
-    "author": "Jacob Orbach <jacoborbach96@gmail.com>",
+    "author": "Jacob Orbach",
     "license": "MIT",
     "keywords": [
         "kaspa",
