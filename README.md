@@ -1,4 +1,4 @@
-# Kaspa Wallet Bundler
+# Kaspa Simple Wallet
 
 A production-safe JavaScript SDK for generating Kaspa addresses from extended public keys (KPUB/XPUB). Supports all major Kaspa wallet formats: Kaspium, Kasware (12/24-word), and Legacy KDX.
 
