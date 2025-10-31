@@ -1,6 +1,6 @@
 {
     "name": "kaspa-simple-wallet",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Watch-only Kaspa address derivation from KPUB/XPUB (Kaspium compatible)",
     "main": "build/kaspa-wallet.js",
     "exports": {
